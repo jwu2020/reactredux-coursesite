@@ -1,10 +1,17 @@
 {
   "courses": [
     {
+      "id": 1,
+      "title": "Securing React Apps with Auth0",
+      "slug": "react-auth0-authentication-security",
+      "authorId": 1,
+      "category": "JavaScript"
+    },
+    {
       "id": 2,
       "title": "React: The Big Picture",
       "slug": "react-big-picture",
-      "authorId": 2,
+      "authorId": 1,
       "category": "JavaScript"
     },
     {
@@ -76,6 +83,26 @@
     {
       "id": 3,
       "name": "Dan Wahlin"
+    },
+    {
+      "id": 4,
+      "name": "awefnnn",
+      "createdAt": 1585806005194
+    },
+    {
+      "id": 5,
+      "name": "test",
+      "createdAt": 1585806061951
+    },
+    {
+      "id": 6,
+      "name": "test1",
+      "createdAt": 1585806087823
+    },
+    {
+      "id": 7,
+      "name": "test2",
+      "createdAt": 1585806100968
     }
   ]
 }

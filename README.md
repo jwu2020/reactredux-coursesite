@@ -48,3 +48,7 @@ Chapter 15:
 - Set up prod redux store
 - Update webpack for prod
 - Set up npm scripts for build
+
+
+
+To run prod, `npm build`

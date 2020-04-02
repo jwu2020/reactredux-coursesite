@@ -1,2 +1,8 @@
 node_modules
 .idea
+build
+.DS_Store
+src/.DS_Store
+src/components/.DS_Store
+src/redux/actions/.DS_Store
+

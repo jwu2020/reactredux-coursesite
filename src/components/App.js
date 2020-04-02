@@ -8,6 +8,7 @@ import CoursesPage from "./courses/CoursesPage";
 import ManageCoursePage from "./courses/ManageCoursePage"; //eslint-disable-line import/no-named-as-default
 import {ToastContainer} from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import AuthorsPage from "./authors/AuthorsPage";
 
 function App() {
     return (
@@ -19,6 +20,7 @@ function App() {
                 <Route path="/courses" component={CoursesPage} />
                 <Route path="/course/:slug" component={ManageCoursePage} />
                 <Route path="/course" component={ManageCoursePage} />
+                <Route path="/authors" component={AuthorsPage} />
                 <Route component={PageNotFound} />
             </Switch>
             <ToastContainer autoCLose={3000} hideProgressBar />

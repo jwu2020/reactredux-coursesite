@@ -8,8 +8,20 @@ export function loadAuthorSuccess(authors) {
         authors: authors
     }
 }
+//
+// export function deleteAuthorOptimistic(author) {
+//     return {
+//         type: types.DELETE_AUTHOR_OPTIMISTIC,
+//         author: author
+//     }
+// }
 
-
+export function addAuthorSuccess(author) {
+    return {
+        type: types.CREATE_AUTHOR_SUCCESS,
+        author: author
+    }
+}
 
 // Thunks
 export function loadAuthors() {
@@ -26,3 +38,23 @@ export function loadAuthors() {
         })
     }
 }
+
+export function createAuthor(author) {
+    return function(dispatch) {
+        dispatch(beginApiCall());
+        return courseApi.createAuthor(author).then(author => {
+            dispatch(addAuthorSuccess(author));
+        }).catch(error => {
+            dispatch(apiCallError(error));
+            throw error;
+        });
+
+    }
+}
+
+// export function deleteAuthor(author) {
+//     return function (dispatch) {
+//         dispatch(deleteAuthorOptimistic(author));
+//         return courseApi.deleteAuthor(author.id);
+//     }
+// }

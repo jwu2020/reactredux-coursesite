@@ -6,3 +6,20 @@ export function getAuthors() {
     .then(handleResponse)
     .catch(handleError);
 }
+
+
+export function deleteAuthor(authorId) {
+  return fetch(baseUrl + authorId, { method: "DELETE" })
+      .then(handleResponse)
+      .catch(handleError);
+}
+
+export function createAuthor(author) {
+  return fetch(baseUrl, {
+    method: "POST",
+    headers: { "content-type": "application/json" },
+    body: JSON.stringify(author)
+  })
+      .then(handleResponse)
+      .catch(handleError);
+}

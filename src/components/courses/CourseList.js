@@ -31,12 +31,12 @@ const CourseList = ({ courses, onDeleteClick }) => (
                     <td>{course.authorName}</td>
                     <td>{course.category}</td>
                     <td>
-                       <button
-                       className="btn btn-outline-danger"
-                       onClick={() => onDeleteClick(course)}
-                       >
-                           Delete
-                       </button>
+                        <button
+                            className="btn btn-outline-danger"
+                            onClick={() => onDeleteClick(course)}
+                        >
+                            Delete
+                        </button>
                     </td>
                 </tr>
             );
@@ -47,7 +47,7 @@ const CourseList = ({ courses, onDeleteClick }) => (
 
 CourseList.propTypes = {
     courses: PropTypes.array.isRequired,
-    onDeleteClick: PropTypes.func.isRequired,
+    onDeleteClick: PropTypes.func.isRequired
 };
 
 export default CourseList;
