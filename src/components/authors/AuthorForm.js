@@ -1,20 +1,22 @@
-import React, {useState} from "react";
+import React from "react";
 import PropTypes from "prop-types";
-import TextInput from "../common/TextInput";
 
 const AuthorForm = ({author, onCreateAuthor, onChange, adding}) => {
-    console.log("in form, author is: ", author);
-
 
     return (
             <form onSubmit={onCreateAuthor}>
-                <input
-                    type="text"
-                    label="Add Author"
-                    name="name"
-                    onChange={onChange}
-                    value={author.name}
-               />
+                <label>
+                    Add Author
+                    <input
+                        className="form-control"
+                        type="text"
+                        label="Add Author"
+                        name="name"
+                        onChange={onChange}
+                        value={author.name}
+                    />
+                </label>
+
                 <button
                     type="submit"
                     className="btn btn-info"

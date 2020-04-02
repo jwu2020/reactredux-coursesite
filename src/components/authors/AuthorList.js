@@ -1,7 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 
-const AuthorList = ({authors}) =>  (
+const AuthorList = ({authors, onDeleteAuthor}) =>  (
         <>
             <table className="table">
                 <thead>
@@ -18,7 +18,7 @@ const AuthorList = ({authors}) =>  (
                             <td>
                                 <button
                                     className="btn btn-outline-danger"
-                                    // onClick={() => onCreateAuthor(author)}
+                                    onClick={() => onDeleteAuthor(author)}
                                 >
                                     Delete
                                 </button>
@@ -34,6 +34,7 @@ const AuthorList = ({authors}) =>  (
 
 AuthorList.propTypes = {
     authors: PropTypes.array.isRequired,
+    onDeleteAuthor: PropTypes.func.isRequired,
 };
 
 export default AuthorList;

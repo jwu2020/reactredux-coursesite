@@ -8,13 +8,13 @@ export function loadAuthorSuccess(authors) {
         authors: authors
     }
 }
-//
-// export function deleteAuthorOptimistic(author) {
-//     return {
-//         type: types.DELETE_AUTHOR_OPTIMISTIC,
-//         author: author
-//     }
-// }
+
+export function deleteAuthorOptimistic(author) {
+    return {
+        type: types.DELETE_AUTHOR_OPTIMISTIC,
+        author: author
+    }
+}
 
 export function addAuthorSuccess(author) {
     return {
@@ -52,9 +52,9 @@ export function createAuthor(author) {
     }
 }
 
-// export function deleteAuthor(author) {
-//     return function (dispatch) {
-//         dispatch(deleteAuthorOptimistic(author));
-//         return courseApi.deleteAuthor(author.id);
-//     }
-// }
+export function deleteAuthor(author) {
+    return function (dispatch) {
+        dispatch(deleteAuthorOptimistic(author));
+        return courseApi.deleteAuthor(author.id);
+    }
+}

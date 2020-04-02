@@ -13,4 +13,5 @@ export const CREATE_AUTHOR_SUCCESS = "CREATE_AUTHOR_SUCCESS";
 // If it had one, our apiCallsInProgress counter would be decremented below zero
 // because we're not incrementing the number of apiCallInProgress when the delete request begins.
 export const DELETE_COURSE_OPTIMISTIC = "DELETE_COURSE_OPTIMISTIC";
+export const DELETE_AUTHOR_OPTIMISTIC = "DELETE_AUTHOR_OPTIMISTIC";
 
