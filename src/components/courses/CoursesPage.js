@@ -8,21 +8,29 @@ import {Link, Redirect} from "react-router-dom";
 import Spinner from "../common/Spinner";
 import { toast } from "react-toastify";
 import TextInput from "../common/TextInput";
-
+import Pagination from "../common/Pagination";
 
 function CoursesPage({authors, courses, loading, loadCourses, loadAuthors, deleteCourse}) {
 
     const [redirectToAddCoursePage, setRedirectToAddCoursePage] = useState(false);
     const [redirectToAuthorPage, setRedirectToAuthorPage] = useState(false);
-    const [query, setQuery] = useState('');
-    const [filterCourses, setFilterCourses] = useState([]);
 
-    // componentDidMount() {
+    const [currentPage, setCurrentPage] = useState(1);
+    const [postsPerPage] = useState(5);
+    // Get current posts
+    let indexOfLastPost = currentPage * postsPerPage;
+    let indexOfFirstPost = indexOfLastPost - postsPerPage;
+
+    // Filter variables
+    const [query, setQuery] = useState('');
+    const [filterCourses, setFilterCourses] = useState([...courses].slice(indexOfFirstPost, indexOfLastPost));
+
     useEffect(() => {
         if (courses.length === 0) {
             loadCourses().catch(error => {
                 alert("Loading courses failed" + error);
             });
+            setFilterCourses([...courses]);
         }
 
         if (authors.length === 0) {
@@ -32,7 +40,12 @@ function CoursesPage({authors, courses, loading, loadCourses, loadAuthors, delet
         }
 
         setFilterCourses([...courses]);
-    }, []);
+        indexOfLastPost = currentPage * postsPerPage;
+        indexOfFirstPost = indexOfLastPost - postsPerPage;
+        setFilterCourses([...courses].slice(indexOfFirstPost, indexOfLastPost));
+
+    },[currentPage]);
+
 
     async function handleDeleteCourse  (course) {
         toast.success("Course deleted");
@@ -47,20 +60,16 @@ function CoursesPage({authors, courses, loading, loadCourses, loadAuthors, delet
 
     function handleSearch(event) {
         event.preventDefault();
-        if(query.name == undefined) {
+        console.log("query is: ", query.name);
+        if (query.name == undefined || query.name === "") {
             console.log("query name: ", query.name);
-            setFilterCourses([...courses]);
+            setFilterCourses([...courses].slice(0,5));
         } else {
-            setFilterCourses(courses.filter(c=> {
+            setFilterCourses(courses.filter(c => {
+                console.log(c.title, ', ', query.name);
                 return (c.title.indexOf(query.name) !== -1)
             }));
         }
-
-
-        console.log('filterCourses ', filterCourses);
-        console.log('courses: ', courses);
-
-
     }
 
     async function handleQuery(event) {
@@ -70,6 +79,8 @@ function CoursesPage({authors, courses, loading, loadCourses, loadAuthors, delet
             [name]: value
         }));
     }
+
+    const paginate = pageNumber => setCurrentPage(pageNumber);
 
 
     return (
@@ -108,9 +119,14 @@ function CoursesPage({authors, courses, loading, loadCourses, loadAuthors, delet
 
                     <CourseList
                         onDeleteClick={handleDeleteCourse}
-                        courses={courses}
-                        filteredCourses={filterCourses}
+                        filteredCourses={filterCourses.length!==0? filterCourses: courses.slice(indexOfFirstPost, indexOfLastPost)}
                     />
+
+                    <Pagination
+                    postsPerPage={postsPerPage}
+                    totalPosts={courses.length}
+                    paginate={paginate}
+                />
 
                 </>
             )}

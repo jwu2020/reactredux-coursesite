@@ -7,6 +7,7 @@ import CourseForm from "./CourseForm";
 import { newCourse } from "../../../tools/mockData";
 import Spinner from "../common/Spinner";
 import { toast } from "react-toastify";
+// import Prompt from "react-router-dom";
 
 export function ManageCoursePage({
                                      courses,
@@ -36,6 +37,7 @@ export function ManageCoursePage({
             });
         }
     }, [props.course]);
+
 
     function handleChange(event) {
         const { name, value } = event.target;
@@ -76,7 +78,13 @@ export function ManageCoursePage({
     return authors.length === 0 || courses.length === 0 ? (
         <Spinner />
     ) : (
-        <CourseForm
+        <>
+            {/*<Prompt*/}
+            {/*    message="Are you sure you want to leave?"*/}
+            {/*    when={!saving}*/}
+            {/*/>*/}
+
+            <CourseForm
             course={course}
             errors={errors}
             authors={authors}
@@ -84,6 +92,7 @@ export function ManageCoursePage({
             onSave={handleSave}
             saving={saving}
         />
+        </>
 
 
     );

@@ -2,8 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
 
-const CourseList = ({ courses, filteredCourses, onDeleteClick }) => {
-    let displayCourses = filteredCourses.length === 0 ? courses: filteredCourses;
+const CourseList = ({filteredCourses, onDeleteClick }) => {
     return (
         <table className="table">
             <thead>
@@ -16,7 +15,7 @@ const CourseList = ({ courses, filteredCourses, onDeleteClick }) => {
             </tr>
             </thead>
             <tbody>
-            {displayCourses.map(course => {
+            {filteredCourses.map(course => {
                 return (
                     <tr key={course.id}>
                         <td>
@@ -49,9 +48,8 @@ const CourseList = ({ courses, filteredCourses, onDeleteClick }) => {
 }
 
 CourseList.propTypes = {
-    courses: PropTypes.array.isRequired,
     onDeleteClick: PropTypes.func.isRequired,
-    filteredCourses: PropTypes.array.isRequired,
+    filteredCourses: PropTypes.array,
 };
 
 export default CourseList;
