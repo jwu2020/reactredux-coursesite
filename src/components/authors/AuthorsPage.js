@@ -37,8 +37,36 @@ function AuthorsPage({authors, courses, loadAuthors, createAuthor, deleteAuthor,
             [event.target.name]: event.target.value});
     }
 
+    /**
+     * Checks if name exists in arr
+     * @param arr
+     * @param name
+     */
+    function checkNameExists(arr, name) {
+        const res = new Promise(resolve => {
+            let bool = true;
+            arr.forEach(element => {
+                if (element.name === name) {
+                    bool = false;
+                }
+            });
+            resolve(bool);
+        });
+
+        return res;
+    }
+
+    async function validateCreateAuthor(name) {
+        const req = checkNameExists(authors, name);
+        return await req;
+    }
+
     async function handleCreateAuthor(event) {
         event.preventDefault();
+        if (!await validateCreateAuthor(author.name)) {
+            toast.error("Add Failed. Author already exists");
+            return;
+        }
         setAdding(true);
         await createAuthor(author).then(()=> {
             toast.success("Author Added");
@@ -49,6 +77,7 @@ function AuthorsPage({authors, courses, loadAuthors, createAuthor, deleteAuthor,
             setErrors({ onSave: error.message });
         });
     }
+
 
     async function validateAuthorDelete(authorToDelete) {
         // Get the current author id's being allocated to current courses - these ones are blacklisted from being deleted
@@ -70,18 +99,7 @@ function AuthorsPage({authors, courses, loadAuthors, createAuthor, deleteAuthor,
             );
         }
 
-        // If the current author name exists in a course, don't let user delete.
-        const res = new Promise(resolve => {
-            let bool = true;
-            merged.forEach(element => {
-                if (element.name === authorToDelete.name) {
-                    bool = false;
-                }
-            });
-            return resolve(bool);
-        });
-
-        return await res;
+        return await checkNameExists(merged, authorToDelete.name);
     }
 
     async function handleDeleteAuthor(authorToDelete) {

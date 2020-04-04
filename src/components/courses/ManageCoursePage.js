@@ -84,6 +84,8 @@ export function ManageCoursePage({
             onSave={handleSave}
             saving={saving}
         />
+
+
     );
 }
 

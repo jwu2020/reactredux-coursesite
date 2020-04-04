@@ -80,11 +80,11 @@
     },
     {
       "id": 13,
-      "title": "test",
-      "authorId": 8,
-      "category": "test",
-      "createdAt": 1585870374071,
-      "slug": "test"
+      "title": "jess1",
+      "authorId": 5,
+      "category": "t",
+      "createdAt": 1585910683604,
+      "slug": "jess1"
     }
   ],
   "authors": [
@@ -98,9 +98,9 @@
       "createdAt": 1585869411873
     },
     {
-      "id": 8,
+      "id": 6,
       "name": "test1",
-      "createdAt": 1585870365824
+      "createdAt": 1585878774661
     }
   ]
 }
